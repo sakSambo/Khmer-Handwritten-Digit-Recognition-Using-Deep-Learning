@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Digit Dataset Collector</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-color: #f0f0f0;
+    }
+    canvas {
+      border: 2px solid #000;
+      background: #000;
+      cursor: crosshair;
+    }
+    .controls {
+      margin: 15px 0;
+    }
+    .controls select,
+    .controls button {
+      font-size: 16px;
+      padding: 8px 12px;
+      margin: 0 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Digit Dataset Collector</h1>
+  <p>Draw a foreign digit, select its Arabic label, and save the image.</p>
+
+  <canvas id="canvas" width="280" height="280"></canvas>
+
+  <div class="controls">
+    <label for="digitLabel">Label:</label>
+    <select id="digitLabel">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+    </select>
+    <button onclick="saveDrawing()">Save</button>
+    <button onclick="clearCanvas()">Clear</button>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    // Initialize canvas
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 15;
+    ctx.lineCap = "round";
+
+    let drawing = false;
+
+    canvas.addEventListener("mousedown", () => {
+      drawing = true;
+      ctx.beginPath();
+    });
+
+    canvas.addEventListener("mouseup", () => drawing = false);
+    canvas.addEventListener("mouseleave", () => drawing = false);
+
+    canvas.addEventListener("mousemove", (e) => {
+      if (!drawing) return;
+      ctx.lineTo(e.offsetX, e.offsetY);
+      ctx.stroke();
+    });
+
+    function clearCanvas() {
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+
+    function saveDrawing() {
+  const label = document.getElementById("digitLabel").value;
+
+  const offCanvas = document.createElement("canvas");
+  offCanvas.width = 28;
+  offCanvas.height = 28;
+  const offCtx = offCanvas.getContext("2d");
+
+  // Set white background
+  offCtx.fillStyle = "white";
+  offCtx.fillRect(0, 0, 28, 28);
+
+  // Draw current canvas content onto the white background
+  offCtx.drawImage(canvas, 0, 0, 28, 28);
+
+  const imageDataURL = offCanvas.toDataURL("image/png");
+
+  const a = document.createElement("a");
+  a.href = imageDataURL;
+  a.download = `digit_${label}_${Date.now()}.png`;
+  a.click();
+}
+  </script>
+</body>
+</html>

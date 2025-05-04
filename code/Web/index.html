@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Khmer Handwritten Digit Recognition</title>
+
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="logo">
+      <img src="C:\Users\saksa\Desktop\NUM\ITSATSUN\Year4\AI\pics\LOGO NUM.png" alt="Logo" id="logoNum" />
+    </div>    
+
+    <div class="title-section">
+      <div class="top">
+        <h1>Khmer Handwritten</h1>
+        <h2>Digit Recognition by NUM FIT</h2>
+        <p>Draw the number in canvas or upload image file (JPG or PNG)</p>
+      </div>
+      <div class="result">
+        <h2 id="result">?</h2>
+      </div>
+    </div>
+
+    <div class="container">
+      <canvas id="canvas" class="canvas" width="300" height="300"></canvas>
+
+      <div class="btn-gp">
+        <button onclick="sendCanvas()">Predict</button>
+        <button onclick="clearCanvas()">Clear</button>
+      </div>
+
+      <div class="separator">
+        <span>OR</span>
+      </div>
+
+      <div class="file-upload">
+        <label for="fileInput" class="file-label">
+          <span id="fileName">Choose an image</span>
+          <input type="file" id="fileInput" accept="image/*" onchange="updateFileName()" />
+        </label>
+        <button onclick="sendFile()">Upload & Predict</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
