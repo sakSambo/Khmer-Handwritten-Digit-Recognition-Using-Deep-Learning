@@ -2,4 +2,6 @@
 -The Dataset folder contain the dataset, test, train, and valid
 -The DatasetCollector folder contains an HTML file that allows you to draw and save png or jpg file to be a dataset
 
+You can check out the picture to see what the web interface looks like.
+
 -THON SAKSAMBO
