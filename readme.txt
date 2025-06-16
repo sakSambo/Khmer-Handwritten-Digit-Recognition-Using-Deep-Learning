@@ -1,3 +1,5 @@
+Khmer-Handwritten-Digit Recognition Using Deep Learning
+
 A final-year Artificial Intelligence project developed at NUM, this web–deep-learning hybrid lets users draw Khmer numerals, sends the input via a Flask API to a trained CNN model, and returns the corresponding Arabic digit. Elegant integration of HTML5 canvas, Flask, and TensorFlow/PyTorch showcases your end-to-end deployment of computer vision and web technologies.
 
 -The python code is in the code folder, and the HTML file is also in there
